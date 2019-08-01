@@ -1,0 +1,2 @@
+export const INC_BREAK_LENGTH = 'INC_BREAK_LENGTH';
+export const DEC_BREAK_LENGTH = 'DEC_BREAK_LENGTH';
