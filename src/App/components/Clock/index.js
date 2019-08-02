@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
 import './index.css';
+import StartStop from './components/StartStop';
 
 class Clock extends Component {
   render() {
     return(
-      <div id="clock">
+          <StartStop />
       </div>
     );
   }

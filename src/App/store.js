@@ -8,10 +8,12 @@ import thunk from 'redux-thunk';
 
 import breakLengthReducer from './components/Break/reducer';
 import sessionLengthReducer from './components/Session/reducer';
+import timerStateReducer from './components/Clock/components/StartStop/reducer';
 
 const rootReducer = combineReducers({
   breakLength: breakLengthReducer,
-  sessionLength: sessionLengthReducer
+  sessionLength: sessionLengthReducer,
+  isRunning: timerStateReducer
 });
 
 export default function configureStore() {

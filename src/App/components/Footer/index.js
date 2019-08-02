@@ -2,7 +2,7 @@ import React from 'react';
 
 import './index.css';
 
-const Footer = () => (
+export default () => (
   <footer className="footer">
     <div className="footer-wrapper">
       <p className="credits">
@@ -11,5 +11,3 @@ const Footer = () => (
     </div>
   </footer>
 );
-
-export default Footer;
