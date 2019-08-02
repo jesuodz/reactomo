@@ -9,11 +9,7 @@ export const resetTimer = () => {
       breakLength: 5,
       sessionLength: 25,
       isRunning: false,
-      time: {
-        minutes: 25,
-        seconds: 0,
-        total: 1500
-      }
+      total: 1500
     }
   }
 }

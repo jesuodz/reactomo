@@ -1,8 +1,8 @@
 import { UPDATE_TIMER } from './types';
 
-export const updateTimer = (times) => {
+export const updateTimer = total => {
   return {
     type: UPDATE_TIMER,
-    payload: times
+    total
   }
 }

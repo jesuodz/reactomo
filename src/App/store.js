@@ -16,7 +16,7 @@ const combinedReducers = combineReducers({
   breakLength: breakLengthReducer,
   sessionLength: sessionLengthReducer,
   isRunning: timerStateReducer,
-  time: clockReducer
+  total: clockReducer
 });
 
 const rootReducer = (state, action) => {

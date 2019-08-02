@@ -8,14 +8,30 @@ import { updateTimer } from './actions';
 import './index.css';
 
 class Clock extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      minutes: 0,
+      seconds: 0
+    }
+  }
+
+
   startTimer = () => {
     this.makeInterval = setInterval(() => {
-      let { minutes, seconds, total } = this.props;
+      let { minutes, seconds } = this.state;
+      let total = this.props.total;
+
       total -= 1;
       minutes = Math.trunc(total / 60);
       seconds = total % 60;
       
-      this.props.updateTimer({ total, minutes, seconds });
+      this.props.updateTimer(total);
+      
+      this.setState({
+        minutes: minutes,
+        seconds: seconds
+      });
 
       if (total === 0)  clearInterval(this.makeInterval) 
     }, 1000);
@@ -29,7 +45,7 @@ class Clock extends Component {
     return(
       <div className="Clock">
         <div>
-          <p>{`${this.props.minutes} : ${this.props.seconds}`}</p>
+          <p>{`${this.state.minutes} : ${this.state.seconds}`}</p>
         </div>
         <StartStop start={this.startTimer} stop={this.stopTimer}/>
         <ResetTimer stop={this.stopTimer}/>
@@ -39,15 +55,11 @@ class Clock extends Component {
 }
 
 Clock.propTypes = {
-  minutes: PropTypes.number.isRequired,
-  seconds: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = state => ({
-  minutes: state.time.minutes,
-  seconds: state.time.seconds,
-  total: state.time.total
+  total: state.total
 });
 
 export default connect(mapStateToProps, { updateTimer })(Clock);
