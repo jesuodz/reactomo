@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import {
-  incrementBreakLength,
-  decrementBreakLength
-} from './actions';
+import { modBreakLength } from './actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import './index.css';
 
 class Break extends Component {
+  onClick = e => {
+    let target = e.target.id;
+
+    if (target === 'break-increment') this.props.changeBreak(1);
+    else this.props.changeBreak(-1);
+  }
+
   render() {
     return (
       <div className="break-wrapper">
@@ -20,13 +24,13 @@ class Break extends Component {
         </div>
         <button
           id="break-increment"
-          onClick={this.props.increment}
+          onClick={this.onClick}
         >
           Increment break
         </button>
         <button
           id="break-decrement"
-          onClick={this.props.decrement}
+          onClick={this.onClick}
         >
           Decrement break
         </button>
@@ -44,8 +48,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  increment: () => dispatch(incrementBreakLength()),
-  decrement: () => dispatch(decrementBreakLength())
+  changeBreak: (mins) => dispatch(modBreakLength(mins))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Break);

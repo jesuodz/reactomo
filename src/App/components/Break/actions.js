@@ -1,16 +1,8 @@
-import {
-  INC_BREAK_LENGTH,
-  DEC_BREAK_LENGTH
-} from './types';
+import { MOD_BREAK_LENGTH } from './types';
 
-export const incrementBreakLength = () => {
+export const modBreakLength = mins => {
   return {
-    type: INC_BREAK_LENGTH
-  }
-};
-
-export const decrementBreakLength = () => {
-  return {
-    type: DEC_BREAK_LENGTH
+    type: MOD_BREAK_LENGTH,
+    payload: mins
   }
 };

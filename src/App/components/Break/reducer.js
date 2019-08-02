@@ -1,14 +1,9 @@
-import {
-  INC_BREAK_LENGTH,
-  DEC_BREAK_LENGTH
-} from './types';
+import { MOD_BREAK_LENGTH } from './types';
 
 export default (state = 5, action) => {
   switch(action.type) {
-    case INC_BREAK_LENGTH:
-      return state + 1
-    case DEC_BREAK_LENGTH:
-      return state -1
+    case MOD_BREAK_LENGTH:
+      return state + action.payload
     default:
       return state;
   }
