@@ -9,11 +9,12 @@ class StartStop extends Component {
   onClick = e => {
     e.preventDefault();
     this.props.toggleTimer();
+    this.props.startTimer();
   }
   
   render() {
     const placeholder = this.props.isRunning ? 'Stop' : 'Start';
-    
+
     return (
       <button
         onClick={this.onClick}
@@ -25,7 +26,8 @@ class StartStop extends Component {
 }
 
 StartStop.propTypes = {
-  toggleTimer: PropTypes.func.isRequired
+  toggleTimer: PropTypes.func.isRequired,
+  startTimer: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

@@ -9,7 +9,6 @@ const initialState = {
 export default (state = initialState, action) => {
   switch(action.type) {
     case UPDATE_TIMER:
-      console.log(action);
       return {
         ...state,
         minutes: action.payload.minutes,

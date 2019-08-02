@@ -27,9 +27,8 @@ class Clock extends Component {
         <div>
           <p>{`${this.props.minutes} : ${this.props.seconds}`}</p>
         </div>
-        <StartStop />
+        <StartStop startTimer={this.startTimer}/>
         <ResetTimer />
-        <button onClick={this.startTimer}>Start timer</button>
       </div>
     );
   }
