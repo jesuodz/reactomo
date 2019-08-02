@@ -9,12 +9,19 @@ import thunk from 'redux-thunk';
 import breakLengthReducer from './components/Break/reducer';
 import sessionLengthReducer from './components/Session/reducer';
 import timerStateReducer from './components/Clock/components/StartStop/reducer';
+import resetTimerReducer from './components/Clock/components/Reset/reducer';
 
-const rootReducer = combineReducers({
+const combinedReducers = combineReducers({
   breakLength: breakLengthReducer,
   sessionLength: sessionLengthReducer,
   isRunning: timerStateReducer
 });
+
+const rootReducer = (state, action) => {
+  const intermediateState = combinedReducers(state, action)
+  const finalState = resetTimerReducer(intermediateState, action);
+  return finalState;
+}
 
 export default function configureStore() {
   return createStore(
