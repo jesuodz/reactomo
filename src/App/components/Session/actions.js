@@ -1,16 +1,17 @@
 import {
-  INC_SESSION_LENGTH,
-  DEC_SESSION_LENGTH
+  MOD_SESSION_LENGTH,
+  SET_SESSION_LENGTH
 } from './types';
 
-export const incrementSessionLength = () => {
+export const modSessionLength = mins => {
   return {
-    type: INC_SESSION_LENGTH
+    type: MOD_SESSION_LENGTH,
+    payload: mins
   }
 };
 
-export const decrementSessionLength = () => {
+export const setSessionLength = () => {
   return {
-    type: DEC_SESSION_LENGTH
+    type: SET_SESSION_LENGTH
   }
-};
+}

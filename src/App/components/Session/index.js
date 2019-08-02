@@ -1,32 +1,40 @@
 import React, { Component } from 'react';
-import {
-  incrementSessionLength,
-  decrementSessionLength
-} from './actions';
+import { modSessionLength, setSessionLength } from './actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import './index.css';
 
-class Break extends Component {
+class Session extends Component {
+  componentDidMount() {
+    if (localStorage.getItem("sessionLength")) this.props.setSession();
+  }
+
+  onClick = e => {
+    let target = e.target.id;
+
+    if (target === 'session-increment') this.props.changeSession(1);
+    else this.props.changeSession(-1);
+  }
+
   render() {
     return (
       <div className="session-wrapper">
         <div
           id="session-label"
         >
-          session length: 
+          Session length: 
           {this.props.length}
         </div>
         <button
           id="session-increment"
-          onClick={this.props.increment}
+          onClick={this.onClick}
         >
-          Increment session
+          Increment break
         </button>
         <button
           id="session-decrement"
-          onClick={this.props.decrement}
+          onClick={this.onClick}
         >
           Decrement break
         </button>
@@ -35,7 +43,7 @@ class Break extends Component {
   }
 }
 
-Break.propTypes = {
+Session.propTypes = {
   length: PropTypes.number.isRequired
 }
 
@@ -43,9 +51,9 @@ const mapStateToProps = state => ({
   length: state.sessionLength
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  increment: () => dispatch(incrementSessionLength()),
-  decrement: () => dispatch(decrementSessionLength())
+const mapDispatchToProps = dispatch => ({
+  changeSession: (minutes) => dispatch(modSessionLength(minutes)),
+  setSession: () => dispatch(setSessionLength())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Break);
+export default connect(mapStateToProps, mapDispatchToProps)(Session);
