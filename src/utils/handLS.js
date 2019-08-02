@@ -6,3 +6,7 @@ export const setLS = (item, minutes) => {
 export const getLS = (item) => (
   Number( localStorage.getItem(item) )
 );
+
+export const clearLS = () => (
+  localStorage.clear()
+);
