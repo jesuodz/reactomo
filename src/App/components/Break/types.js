@@ -1,1 +1,2 @@
 export const MOD_BREAK_LENGTH = 'MOD_BREAK_LENGTH';
+export const SET_BREAK_LENGTH = 'SET_BREAK_LENGTH';

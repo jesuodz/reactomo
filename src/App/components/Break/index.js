@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { modBreakLength } from './actions';
+import { modBreakLength, setBreakLength } from './actions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import './index.css';
 
 class Break extends Component {
+  componentDidMount() {
+    if (localStorage.getItem("breakLength")) this.props.setBreak();
+  }
+
   onClick = e => {
     let target = e.target.id;
 
@@ -47,8 +51,9 @@ const mapStateToProps = state => ({
   length: state.breakLength
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  changeBreak: (mins) => dispatch(modBreakLength(mins))
+const mapDispatchToProps = dispatch => ({
+  changeBreak: (minutes) => dispatch(modBreakLength(minutes)),
+  setBreak: () => dispatch(setBreakLength())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Break);
