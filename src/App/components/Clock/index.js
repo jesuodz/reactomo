@@ -4,16 +4,16 @@ import StartStop from './components/StartStop';
 import ResetTimer from './components/Reset';
 
 import './index.css';
-import StartStop from './components/StartStop';
 
 class Clock extends Component {
   render() {
     return(
-          <StartStop />
-          <ResetTimer />
+      <div className="Clock">
+        <StartStop />
+        <ResetTimer />
       </div>
     );
   }
 }
 
-export default Clock;
+export default connect()(Clock);
