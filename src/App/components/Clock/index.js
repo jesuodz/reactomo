@@ -21,14 +21,18 @@ class Clock extends Component {
     }, 1000);
   }
 
+  stopTimer = () => {
+    clearInterval(this.makeInterval);
+  }
+
   render() {
     return(
       <div className="Clock">
         <div>
           <p>{`${this.props.minutes} : ${this.props.seconds}`}</p>
         </div>
-        <StartStop startTimer={this.startTimer}/>
-        <ResetTimer />
+        <StartStop start={this.startTimer} stop={this.stopTimer}/>
+        <ResetTimer/>
       </div>
     );
   }
