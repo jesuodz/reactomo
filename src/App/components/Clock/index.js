@@ -32,7 +32,7 @@ class Clock extends Component {
           <p>{`${this.props.minutes} : ${this.props.seconds}`}</p>
         </div>
         <StartStop start={this.startTimer} stop={this.stopTimer}/>
-        <ResetTimer/>
+        <ResetTimer stop={this.stopTimer}/>
       </div>
     );
   }

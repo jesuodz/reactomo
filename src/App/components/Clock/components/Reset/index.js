@@ -8,6 +8,7 @@ import './index.css';
 class ResetTimer extends Component {
   onClick = e => {
     e.preventDefault();
+    this.props.stop();
     this.props.resetTimer();
   };
   render() {
@@ -20,7 +21,8 @@ class ResetTimer extends Component {
 }
 
 ResetTimer.propTypes = {
-  resetTimer: PropTypes.func.isRequired
+  resetTimer: PropTypes.func.isRequired,
+  stop: PropTypes.func.isRequired
 }
 
 export default connect(null, { resetTimer })(ResetTimer);

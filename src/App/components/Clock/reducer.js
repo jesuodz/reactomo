@@ -1,9 +1,9 @@
 import { UPDATE_TIMER } from './types';
 
 const initialState = {
-  minutes: 0,
+  minutes: 25,
   seconds: 0,
-  total: 0
+  total: 1500
 }
 
 export default (state = initialState, action) => {

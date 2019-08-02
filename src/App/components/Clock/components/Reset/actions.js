@@ -8,7 +8,12 @@ export const resetTimer = () => {
     payload: {
       breakLength: 5,
       sessionLength: 25,
-      isRunning: false
+      isRunning: false,
+      time: {
+        minutes: 25,
+        seconds: 0,
+        total: 1500
+      }
     }
   }
 }
