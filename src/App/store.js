@@ -10,11 +10,13 @@ import breakLengthReducer from './components/Break/reducer';
 import sessionLengthReducer from './components/Session/reducer';
 import timerStateReducer from './components/Clock/components/StartStop/reducer';
 import resetTimerReducer from './components/Clock/components/Reset/reducer';
+import clockReducer from './components/Clock/reducer';
 
 const combinedReducers = combineReducers({
   breakLength: breakLengthReducer,
   sessionLength: sessionLengthReducer,
-  isRunning: timerStateReducer
+  isRunning: timerStateReducer,
+  time: clockReducer
 });
 
 const rootReducer = (state, action) => {

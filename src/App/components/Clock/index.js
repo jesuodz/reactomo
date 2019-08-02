@@ -1,47 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import StartStop from './components/StartStop';
 import ResetTimer from './components/Reset';
+import { updateTimer } from './actions';
 
 import './index.css';
 
 class Clock extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      time: {
-        minutes: 0,
-        seconds: 0
-      },
-      timeTotal: 0
-    };
-
-    this.startTimer = this.startTimer.bind(this);
-  }
-
-  startTimer() {
+  startTimer = () => {
     this.makeInterval = setInterval(() => {
-      let { timeTotal } = this.state;
-      let { time } = this.state;
+      let { minutes, seconds, total } = this.props;
+      total -= 1;
+      minutes = Math.trunc(total / 60);
+      seconds = total % 60;
+      
+      this.props.updateTimer({ total, minutes, seconds });
 
-      timeTotal += 1;
-      let minutes = Math.trunc(timeTotal / 60);
-      let seconds = timeTotal  % 60;
-
-      this.setState({
-        timeTotal: timeTotal
-      });
-      this.setState({
-        time: {
-          minutes: minutes,
-          seconds: seconds
-        }
-      });
-
-      // when reaching 0, clear the interval
-      if (timeTotal === 0) {
-        clearInterval(this.makeInterval);
-      }
+      if (total === 0)  clearInterval(this.makeInterval) 
     }, 1000);
   }
 
@@ -49,9 +25,7 @@ class Clock extends Component {
     return(
       <div className="Clock">
         <div>
-          <p>Minutes:  {this.state.time.minutes}</p>
-          <p>Seconds: {this.state.time.seconds}</p>
-          <p>Total: {this.state.timeTotal}</p>
+          <p>{`${this.props.minutes} : ${this.props.seconds}`}</p>
         </div>
         <StartStop />
         <ResetTimer />
@@ -61,4 +35,16 @@ class Clock extends Component {
   }
 }
 
-export default connect()(Clock);
+Clock.propTypes = {
+  minutes: PropTypes.number.isRequired,
+  seconds: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+}
+
+const mapStateToProps = state => ({
+  minutes: state.time.minutes,
+  seconds: state.time.seconds,
+  total: state.time.total
+});
+
+export default connect(mapStateToProps, { updateTimer })(Clock);
