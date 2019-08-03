@@ -6,15 +6,17 @@ import { connect } from 'react-redux';
 import './index.css';
 
 class Session extends Component {
+  onClick = e => {
+    let target = e.target.id === 'session-increment' ? true : false;
+    if ((target) && (this.props.length < 60)) {
+      this.props.changeSession(1);
+    } else if (!(target) && (this.props.length > 1)) {
+      this.props.changeSession(-1);
+    }
+  }
+  
   componentDidMount() {
     if (localStorage.getItem("sessionLength")) this.props.setSession();
-  }
-
-  onClick = e => {
-    let target = e.target.id;
-
-    if (target === 'session-increment') this.props.changeSession(1);
-    else this.props.changeSession(-1);
   }
 
   render() {
@@ -30,13 +32,13 @@ class Session extends Component {
           id="session-increment"
           onClick={this.onClick}
         >
-          Increment break
+          Increment session
         </button>
         <button
           id="session-decrement"
           onClick={this.onClick}
         >
-          Decrement break
+          Decrement session
         </button>
       </div>
     );

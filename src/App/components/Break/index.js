@@ -6,15 +6,17 @@ import { connect } from 'react-redux';
 import './index.css';
 
 class Break extends Component {
-  componentDidMount() {
-    if (localStorage.getItem("breakLength")) this.props.setBreak();
+  onClick = e => {
+    let target = e.target.id === 'break-increment' ? true : false;
+    if ((target) && (this.props.length < 60)) {
+      this.props.changeBreak(1);
+    } else if (!(target) && (this.props.length > 1)) {
+      this.props.changeBreak(-1);
+    }
   }
 
-  onClick = e => {
-    let target = e.target.id;
-
-    if (target === 'break-increment') this.props.changeBreak(1);
-    else this.props.changeBreak(-1);
+  componentDidMount() {
+    if (localStorage.getItem("breakLength")) this.props.setBreak();
   }
 
   render() {
