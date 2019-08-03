@@ -10,12 +10,8 @@ import './index.css';
 class Clock extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      minutes: 0,
-      seconds: 0
-    }
+    this.state = { minutes: 0, seconds: 0 }
   }
-
 
   startTimer = () => {
     this.makeInterval = setInterval(() => {
@@ -27,18 +23,17 @@ class Clock extends Component {
       seconds = total % 60;
       
       this.props.updateTimer(total);
-      
-      this.setState({
-        minutes: minutes,
-        seconds: seconds
-      });
+      this.setState({ minutes: minutes, seconds: seconds });
 
       if (total === 0)  clearInterval(this.makeInterval) 
     }, 1000);
   }
 
-  stopTimer = () => {
-    clearInterval(this.makeInterval);
+  stopTimer = () => ( clearInterval(this.makeInterval) );
+
+  resetTimer = () => {
+    this.stopTimer();
+    this.setState({ minutes: 25, seconds: 0 });
   }
 
   render() {
@@ -48,7 +43,7 @@ class Clock extends Component {
           <p>{`${this.state.minutes} : ${this.state.seconds}`}</p>
         </div>
         <StartStop start={this.startTimer} stop={this.stopTimer}/>
-        <ResetTimer stop={this.stopTimer}/>
+        <ResetTimer stop={this.resetTimer}/>
       </div>
     );
   }
